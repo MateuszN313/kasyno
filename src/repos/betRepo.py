@@ -4,16 +4,16 @@ from src.models import Bet
 
 class BetRepo(ABC):
     @abstractmethod
-    def add_bet(self, bet) -> bool: pass
+    def add_bet(self, bet: Bet) -> bool: pass
 
     @abstractmethod
-    def remove_bet(self, bet_id) -> bool: pass
+    def remove_bet(self, bet_id: str) -> bool: pass
 
     @abstractmethod
     def get_bets(self) -> list[Bet]: pass
 
     @abstractmethod
-    def get_bet(self, bet_id) -> Bet: pass
+    def get_bet(self, bet_id: str) -> Bet: pass
 
     @abstractmethod
     def _load(self) -> None: pass

@@ -4,16 +4,16 @@ from src.models import User
 
 class UserRepo(ABC):
     @abstractmethod
-    def add_user(self, user) -> bool: pass
+    def add_user(self, user: User) -> bool: pass
 
     @abstractmethod
-    def remove_user(self, user_id) -> bool: pass
+    def remove_user(self, user_id: str) -> bool: pass
 
     @abstractmethod
     def get_users(self) -> list[User]: pass
 
     @abstractmethod
-    def get_user(self, user_id) -> User: pass
+    def get_user(self, user_id: str) -> User: pass
 
     @abstractmethod
     def _load(self) -> None: pass

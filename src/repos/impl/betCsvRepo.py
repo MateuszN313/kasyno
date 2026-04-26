@@ -2,21 +2,21 @@ from src.models import Bet
 from src.repos import BetRepo
 
 class BetCsvRepo(BetRepo):
-    def __init__(self, path):
+    def __init__(self, path: str):
         self.__bets: list[Bet] = []
         self.__path: str = path
         self._load()
 
-    def add_bet(self, bet) -> bool:
+    def add_bet(self, bet: Bet) -> bool:
         pass
 
-    def remove_bet(self, bet_id) -> bool:
+    def remove_bet(self, bet_id: str) -> bool:
         pass
 
     def get_bets(self) -> list[Bet]:
         pass
 
-    def get_bet(self, bet_id) -> Bet:
+    def get_bet(self, bet_id: str) -> Bet:
         pass
 
     def _load(self) -> None:
@@ -24,5 +24,6 @@ class BetCsvRepo(BetRepo):
 
     def _save(self) -> None:
         pass
+
 
 

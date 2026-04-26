@@ -1,6 +1,6 @@
 class Horse:
-    def __init__(self, name, wins, loses):
+    def __init__(self, id: str, name: str, wins: int, loses: int):
         self.__id: str = ""
         self.__name: str = name
-        self.__wins: int = 0
-        self.__loses: int = 0
+        self.__wins: int = wins
+        self.__loses: int = loses

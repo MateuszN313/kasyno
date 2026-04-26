@@ -1,9 +1,7 @@
-from enum import Enum
-
 class User:
-    def __init__(self, login, password_hash):
-        self.__id: str = ""
+    def __init__(self, id: str, login: str, password_hash: str, role: str, balance: float):
+        self.__id: str = id
         self.__login: str = login
         self.__password_hash: str = password_hash
-        self.__role: str = "PLAYER"
-        self.__balance: float = 0
+        self.__role: str = role
+        self.__balance: float = balance
