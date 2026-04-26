@@ -16,7 +16,7 @@ class Main:
 
         deck_of_cards: DeckOfCards = DeckOfCards()
         games: dict[str, Game] = {"Blackjack": Blackjack(deck_of_cards),
-                                  "Horse Race": HorseRace(repo_service.check_horses),
+                                  "Horse Race": HorseRace(repo_service.check_horses()),
                                   "Roulette": Roulette()}
         game_service: GameService = GameService(games)
 
