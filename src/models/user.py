@@ -12,7 +12,7 @@ class User:
     def __str__(self) -> str:
         return f"id: {self.__id}, login: {self.__login}, role: {self.__role}, balance: {self.__balance}"
 
-    def get_copy(self) -> User:
+    def get_copy(self):
         return User(self.__id, self.__login, self.__password_hash, self.__role, self.__balance)
 
     def get_id(self) -> str:

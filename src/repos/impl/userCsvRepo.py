@@ -67,6 +67,3 @@ class UserCsvRepo(UserRepo):
             to_write.append(user.to_csv() + '\n')
         file.writelines(to_write)
         file.close()
-
-if __name__ == "__main__":
-    user_csv_repo: UserCsvRepo = UserCsvRepo(RESOURCES_DIR / "users.csv")
