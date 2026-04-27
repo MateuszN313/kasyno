@@ -18,5 +18,8 @@ class User:
     def get_id(self) -> str:
         return self.__id
 
+    def set_id(self, id: str):
+        self.__id = id
+
     def get_login(self) -> str:
         return self.__login
