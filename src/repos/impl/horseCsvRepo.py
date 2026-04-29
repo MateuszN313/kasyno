@@ -10,13 +10,13 @@ class HorseCsvRepo(HorseRepo):
     def add_horse(self, horse: Horse) -> bool:
         pass
 
-    def remove_horse(self, horse_id: str) -> bool:
+    def remove_horse(self, id: str) -> bool:
         pass
 
     def get_horses(self) -> list[Horse]:
         pass
 
-    def get_horse(self, horse_id: str) -> Horse:
+    def get_horse(self, id: str) -> Horse:
         pass
 
     def _load(self) -> None:

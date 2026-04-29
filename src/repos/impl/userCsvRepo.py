@@ -1,6 +1,5 @@
 import uuid
 
-from src.config.paths import RESOURCES_DIR
 from src.models import User
 from src.repos import UserRepo
 
@@ -25,9 +24,9 @@ class UserCsvRepo(UserRepo):
         self._save()
         return True
 
-    def remove_user(self, user_id: str) -> bool:
-        user = [user for user in self.__users if user.get_id() == user_id]
-        if len(user) == 1:
+    def remove_user(self, id: str) -> bool:
+        user = [user for user in self.__users if user.get_id() == id]
+        if len(user) >= 1:
             self.__users.remove(user[0])
             self._save()
             return True
@@ -38,16 +37,16 @@ class UserCsvRepo(UserRepo):
         copy = [user.get_copy() for user in self.__users]
         return copy
 
-    def get_user_by_id(self, user_id: str) -> User | None:
-        user = [user.get_copy() for user in self.__users if user.get_id() == user_id]
-        if len(user) == 1:
+    def get_user_by_id(self, id: str) -> User | None:
+        user = [user.get_copy() for user in self.__users if user.get_id() == id]
+        if len(user) >= 1:
             return user[0]
         else:
             return None
 
-    def get_user_by_login(self, user_login: str) -> User | None:
-        user = [user.get_copy() for user in self.__users if user.get_login() == user_login]
-        if len(user) == 1:
+    def get_user_by_login(self, login: str) -> User | None:
+        user = [user.get_copy() for user in self.__users if user.get_login() == login]
+        if len(user) >= 1:
             return user[0]
         else:
             return None

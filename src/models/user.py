@@ -18,8 +18,17 @@ class User:
     def get_id(self) -> str:
         return self.__id
 
-    def set_id(self, id: str):
+    def set_id(self, id: str) -> None:
         self.__id = id
 
     def get_login(self) -> str:
         return self.__login
+
+    def get_password_hash(self) -> str:
+        return self.__password_hash
+
+    def get_balance(self) -> float:
+        return self.__balance
+
+    def set_balance(self, balance: float):
+        self.__balance = balance
