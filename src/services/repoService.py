@@ -1,6 +1,7 @@
+import hashlib
+
 from src.models import Horse, User
 from src.repos import UserRepo, HorseRepo, BetRepo
-from src.services import HashService
 
 
 class RepoService:
@@ -23,7 +24,7 @@ class RepoService:
         if user is None:
             return None
 
-        password_hash = HashService.hash(password)
+        password_hash = hashlib.sha256(password.encode()).hexdigest()
         if user.get_password_hash() == password_hash:
             return user
         return None
