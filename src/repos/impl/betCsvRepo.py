@@ -10,13 +10,13 @@ class BetCsvRepo(BetRepo):
     def add_bet(self, bet: Bet) -> bool:
         pass
 
-    def remove_bet(self, bet_id: str) -> bool:
+    def remove_bet(self, id: str) -> bool:
         pass
 
     def get_bets(self) -> list[Bet]:
         pass
 
-    def get_bet(self, bet_id: str) -> Bet:
+    def get_bet(self, id: str) -> Bet:
         pass
 
     def _load(self) -> None:
