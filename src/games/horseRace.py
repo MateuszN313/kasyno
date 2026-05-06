@@ -5,5 +5,5 @@ class HorseRace(Game):
     def __init__(self, horses: list[Horse]):
         self.__horses: list[Horse] = horses
 
-    def play(self) -> float:
+    def play(self, value: float, user_balance: float) -> float:
         pass

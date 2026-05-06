@@ -15,9 +15,9 @@ class Main:
         repo_service: RepoService = RepoService(user_repo, horse_repo, bet_repo)
 
         deck_of_cards: DeckOfCards = DeckOfCards()
-        games: dict[str, Game] = {"Blackjack": Blackjack(deck_of_cards),
-                                  "Horse Race": HorseRace(repo_service.check_horses()),
-                                  "Roulette": Roulette()}
+        games: dict[str, Game] = {"blackjack": Blackjack(deck_of_cards),
+                                  "horse race": HorseRace(repo_service.check_horses()),
+                                  "roulette": Roulette()}
         game_service: GameService = GameService(games)
 
         ui: UI = UI(repo_service, game_service)
