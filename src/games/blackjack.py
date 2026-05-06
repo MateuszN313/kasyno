@@ -12,7 +12,7 @@ class Blackjack(Game):
         self.__croupier_value: int = 0
         self.__player_value: int = 0
 
-    def play(self) -> float:
+    def play(self, value: float, user_balance: float) -> float:
         self.__deck_of_cards.shuffle()
 
         self.__croupier = [self.__deck_of_cards.get_card(), self.__deck_of_cards.get_card()]
@@ -28,7 +28,7 @@ class Blackjack(Game):
 
         self.__print_cards(True)
 
-        player_round = self.__player_round()
+        player_round = self.__player_round(value, user_balance)
         if player_round <= 0:
             print("twoj wynik jest powyzej 21, przegrales :(")
             return player_round
@@ -48,18 +48,25 @@ class Blackjack(Game):
         return player_round
 
 
-    def __player_round(self) -> float:
+    def __player_round(self, value: float, user_balance: float) -> float:
         print("-------------------------------------------")
         print("twoja runda")
         print("-------------------------------------------")
         choice = int(input("akcje: 1. dobierz karte | 2. zakoncz ture | 3. podwoj stawke\n"))
-        if choice == 3:
+
+        if choice == 3 and user_balance >= value:
             self.__player.append(self.__deck_of_cards.get_card())
             self.__player_value = self.__get_cards_value(self.__player)
-        elif choice == 1:
+        elif choice == 3 and user_balance < value:
+            print("nie masz budzetu na podwajanie :(")
+            choice = 4
+
+        if choice == 1 or choice == 4:
             while True:
-                self.__player.append(self.__deck_of_cards.get_card())
-                self.__player_value = self.__get_cards_value(self.__player)
+                if choice == 1:
+                    self.__player.append(self.__deck_of_cards.get_card())
+                    self.__player_value = self.__get_cards_value(self.__player)
+
                 if self.__player_value > 21:
                     break
 

@@ -5,5 +5,5 @@ class Roulette(Game):
     def __init__(self):
         self.__fields: list[Field] = []
 
-    def play(self) -> float:
+    def play(self, value: float, user_balance: float) -> float:
         pass
