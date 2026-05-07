@@ -5,3 +5,6 @@ class Bet:
         self.__game: str = game
         self.__value: float = value
         self.__result: float = result
+
+    def get_result(self) -> float:
+        return self.__result
