@@ -76,22 +76,10 @@ class UI:
                 print(self.__active_user.get_balance())
 
             elif choice == 3:
-                print("podaj ilosc wplacanych pieniedzy")
-                amount = float(input())
-                if self.__repo_service.change_user_balance(self.__active_user.get_id(), amount):
-                    balance = self.__active_user.get_balance()
-                    self.__active_user.set_balance(balance + amount)
-                else:
-                    print("blad przy wplacaniu")
+                self.charge_balance()
 
             elif choice == 4:
-                print("podaj ilosc wyplacanych pieniedzy")
-                amount = -float(input())
-                if self.__repo_service.change_user_balance(self.__active_user.get_id(), amount):
-                    balance = self.__active_user.get_balance()
-                    self.__active_user.set_balance(balance + amount)
-                else:
-                    print("blad przy wyplacaniu")
+                self.deposit()
 
             elif choice == 5: pass
                 #                  print zakladow
@@ -99,4 +87,51 @@ class UI:
                 return
 
     def admin_ui(self) -> None:
-        pass
+        print("--- Admin ---")
+
+        while True:
+            print("1 - wyswietl zaklady | 2 - wyswietl konie | 3 - dodaj konia | 4 - usun konia | 5 - wyswietl uzytkownikow | 6 - usun uzytkownika | 0 - wyloguj sie")
+            choice = int(input())
+
+            if choice == 1: pass
+                #         wyswietlanie zakladow
+            elif choice == 2: pass
+                #         wyswietlanie koni
+            elif choice == 3:
+                print("podaj imie konia")
+                name = input()
+                #         dodawanie konia
+            elif choice == 4:
+                print("podaj id konia")
+                id = input()
+                #         usuwanie konia
+            elif choice == 5:
+                users = self.__repo_service.check_users()
+                for user in users:
+                    print(user)
+            elif choice == 6:
+                print("podaj id uzytkownika")
+                if self.__repo_service.remove_user(input()):
+                    print("usunieto uzytkownia")
+                else:
+                    print("blad przy usuwaniu uzytkownika")
+            elif choice == 0:
+                return
+
+    def charge_balance(self) -> None:
+        print("podaj ilosc wplacanych pieniedzy")
+        amount = float(input())
+        if self.__repo_service.change_user_balance(self.__active_user.get_id(), amount):
+            balance = self.__active_user.get_balance()
+            self.__active_user.set_balance(balance + amount)
+        else:
+            print("blad przy wplacaniu")
+
+    def deposit(self) -> None:
+        print("podaj ilosc wyplacanych pieniedzy")
+        amount = -float(input())
+        if self.__repo_service.change_user_balance(self.__active_user.get_id(), amount):
+            balance = self.__active_user.get_balance()
+            self.__active_user.set_balance(balance + amount)
+        else:
+            print("blad przy wyplacaniu")
