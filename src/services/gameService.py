@@ -6,7 +6,10 @@ class GameService:
     def __init__(self, games):
         self.__games: dict[str, Game] = games
 
-    def start_game(self, game: str, user: User, value: float) -> Bet:
+    def start_game(self, game: str, user: User, value: float) -> Bet | None:
+        if user.get_balance() < value:
+            return None
+
         multiplayer = self.__games[game.lower()].play(value, user.get_balance())
         result = value * multiplayer
         return Bet("", user.get_id(), game.lower(), value, result)

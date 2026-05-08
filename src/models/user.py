@@ -27,6 +27,9 @@ class User:
     def get_password_hash(self) -> str:
         return self.__password_hash
 
+    def get_role(self) -> str:
+        return self.__role
+
     def get_balance(self) -> float:
         return self.__balance
 

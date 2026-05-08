@@ -13,11 +13,20 @@ class RepoService:
     def check_users(self) -> list[User]:
         return self.__user_repo.get_users()
 
-    def add_user(self, user: User) -> bool:
-        return self.__user_repo.save_user(user)
-
     def remove_user(self, id: str) -> bool:
         return self.__user_repo.remove_user(id)
+
+    def register_user(self, login: str, password: str) -> bool:
+        user = self.__user_repo.get_user_by_login(login)
+        if user:
+            return False
+
+        if not password:
+            return False
+
+        password_hash = hashlib.sha256(password.encode()).hexdigest()
+        return self.__user_repo.save_user(User("", login, password_hash, "PLAYER", 0))
+
 
     def authenticate_user(self, login: str, password: str) -> User | None:
         user = self.__user_repo.get_user_by_login(login)

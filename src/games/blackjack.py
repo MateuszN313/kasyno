@@ -11,8 +11,10 @@ class Blackjack(Game):
         self.__player: list[Card] = []
         self.__croupier_value: int = 0
         self.__player_value: int = 0
+        self.__doubled: bool = False
 
     def play(self, value: float, user_balance: float) -> float:
+        self.__doubled = False
         self.__deck_of_cards.shuffle()
 
         self.__croupier = [self.__deck_of_cards.get_card(), self.__deck_of_cards.get_card()]
@@ -42,6 +44,8 @@ class Blackjack(Game):
                 return 1
             elif self.__player_value < self.__croupier_value:
                 print("przegrales :(")
+                if self.__doubled:
+                    return -1
                 return 0
 
         print("wygrales :)")
@@ -55,6 +59,7 @@ class Blackjack(Game):
         choice = int(input("akcje: 1. dobierz karte | 2. zakoncz ture | 3. podwoj stawke\n"))
 
         if choice == 3 and user_balance >= value:
+            self.__doubled = True
             self.__player.append(self.__deck_of_cards.get_card())
             self.__player_value = self.__get_cards_value(self.__player)
         elif choice == 3 and user_balance < value:
@@ -83,7 +88,7 @@ class Blackjack(Game):
             return 0
         else:
             if choice == 3:
-                return 4
+                return 3
             return 2
 
 
