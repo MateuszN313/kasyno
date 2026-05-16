@@ -1,6 +1,6 @@
 import hashlib
 
-from src.models import Horse, User
+from src.models import Horse, User, Bet
 from src.repos import UserRepo, HorseRepo, BetRepo
 
 
@@ -40,3 +40,25 @@ class RepoService:
 
         user.set_balance(balance + amount)
         return self.__user_repo.save_user(user)
+
+    def check_bets(self) -> None:
+        bets = self.__bet_repo.get_bets()
+        for bet in bets:
+            print(f"{bet}\n")
+
+    def add_bet(self, bet: Bet) -> None:
+        self.__bet_repo.add_bet(bet)
+
+    def remove_bet(self, id: str) -> bool:
+        return self.__bet_repo.remove_bet(id)
+
+    def check_horses(self) -> None:
+        horses = self.__horse_repo.get_horses()
+        for horse in horses:
+            print(f"{horse}")
+
+    def remove_horse(self, id: str) -> bool:
+        return self.__horse_repo.remove_horse(id)
+
+    def add_horse(self, horse: Horse) -> None:
+        self.__horse_repo.add_horse(horse)

@@ -7,23 +7,48 @@ class BetCsvRepo(BetRepo):
         self.__path: str = path
         self._load()
 
+    def __del__(self) -> None:
+        self._save()
+
     def add_bet(self, bet: Bet) -> bool:
-        pass
+        if bet.get_id() not in self.__bets:
+            self.__bets.append(bet)
+            return True
+        return False
 
     def remove_bet(self, id: str) -> bool:
-        pass
+        for bet in self.__bets:
+            if bet.get_id() == id:
+                self.__bets.remove(bet)
+                return True
+        return False
 
     def get_bets(self) -> list[Bet]:
-        pass
+        return self.__bets
 
-    def get_bet(self, id: str) -> Bet:
-        pass
+    def get_bet(self, id: str) -> Bet | None:
+        for bet in self.__bets:
+            if bet.get_id() == id:
+                return bet
+        else :
+            return None
 
     def _load(self) -> None:
-        pass
+        try:
+            file = open(self.__path, 'r')
+            file.readline()
+            for line in file:
+                self.__bets.append(Bet.from_csv_line(line))
+        except FileNotFoundError:
+            print("Nie znleziono pliku - stworzono nową pustą baze zakładów")
+
+
 
     def _save(self) -> None:
-        pass
+        file = open(self.__path, 'w')
+        for bet in self.__bets:
+            file.write(bet.to_csv_line())
+
 
 
 
